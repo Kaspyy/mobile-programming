@@ -9,12 +9,7 @@ fun main() {
     val studentStatus = { name: String, auraColor: String ->
         println("$name has a $auraColor face color")
     }
-    studentStatus("Mike", "red")
-
-    // val student = Student("Mike", "Politechnika Warszawska")
-    // student.showStudent()
-    val student = Student("mike")
-    student.showStudent()
+    studentStatus("Marcin", "red")
 }
 
 // 3. Klasy.
@@ -24,10 +19,10 @@ fun main() {
 // studenta zadbaj o to, by jej wartość zawsze zaczynała się od dużej litery, skorzystaj
 // do tego z nadpisania metody get.
 
-// class Student {
-//     var name: String = "mike"
-//         get() = field.replaceFirstChar { transform -> transform.uppercase() }
-// }
+class Student {
+    var name: String = "mike"
+        get() = field.replaceFirstChar { transform -> transform.uppercase() }
+}
 
 // 4. Konstruktory.
 // Podobnie jak w punkcie 3, zdefiniuj klasę Student, tym razem użyj konstruktora do
@@ -36,38 +31,34 @@ fun main() {
 // której wartość należy ustawić domyślnie, jeśli nie zostanie przekazana w wywołaniu
 // konstruktora.
 
-// class Student {
-//     var name: String
-//         get() = field.replaceFirstChar { transform -> transform.uppercase() }
-//     var university: String
+class Student {
+    var name: String
+        get() = field.replaceFirstChar { transform -> transform.uppercase() }
+    var university: String
 
-//     constructor(name: String, university: String = "PK") {
-//         this.name = name
-//         this.university = university
-//     }
-// }
+    constructor(name: String, university: String = "PK") {
+        this.name = name
+        this.university = university
+    }
+}
 
 // 5. Enkapsulacja i funkcje klasowe.
 // Oznacz wszystkie właściwości zdefiniowane w klasie Student jako prywatne. Dodaj
 // publiczną funkcję lambda showStudent, która wyświetla imię studenta i jego uczelnię.
 // Wywołaj metodę showStudent bez żadnych argumentów.
 
-// class Student {
-//     private var name: String
-//         get() = field.replaceFirstChar { transform -> transform.uppercase() }
-//     private var university: String
+class Student {
+    private var name: String
+        get() = field.replaceFirstChar { transform -> transform.uppercase() }
+    private var university: String
 
-//     val showStudent = { name: String, university: String -> println("$name, $university") }
+    public val showStudent = { name: String, university: String -> println("$name, $university") }
 
-//     constructor(name: String, university: String = "PK") {
-//         this.name = name
-//         this.university = university
-//     }
-
-//     fun showStudent() {
-//         showStudent(name, university)
-//     }
-// }
+    constructor(name: String, university: String = "PK") {
+        this.name = name
+        this.university = university
+    }
+}
 
 // 6. Dziedziczenie
 // Imię jest charakterystyczne dla każdej osoby, nie tylko studenta. Zdefiniuj klasę
@@ -77,18 +68,12 @@ fun main() {
 // klasy Student i za pomocą metody showStudent zaimplementowanej w ramach
 // punktu 5 wyświetl imię studenta oraz nazwę jego uczelni.
 
-// create an open class Person with a name property and base constructor
 open class Person constructor(var name: String) {
     init {
         name = name.replaceFirstChar { transform -> transform.uppercase() }
     }
 }
 
-// create a class Student that inherits from Person and has a university property
 class Student constructor(name: String, var university: String = "PK") : Person(name) {
-    val showStudent = { name: String, university: String -> println("$name, $university") }
-
-    fun showStudent() {
-        showStudent(name, university)
-    }
+    public val showStudent = { name: String, university: String -> println("$name, $university") }
 }
