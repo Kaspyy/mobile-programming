@@ -20,7 +20,10 @@
                 android:value="" />
         </activity>
 
-        <service android:name=".BindService" />
+        <service
+            android:name=".BindService"
+            android:enabled="true"
+            android:exported="false"></service>
 
         <activity
             android:name=".MainActivity"
