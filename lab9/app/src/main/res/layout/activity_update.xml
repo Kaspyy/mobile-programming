@@ -7,7 +7,7 @@
     tools:context=".AddActivity">
 
     <EditText
-        android:id="@+id/editStudentName"
+        android:id="@+id/updateStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="240dp"
@@ -21,13 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Add"
+        android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editStudentName" />
+        app:layout_constraintTop_toBottomOf="@+id/updateStudentName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LightSwitch</string>
+    <string name="home_screen">Latarka</string>
+    <string name="next">Dalej</string>
+    <string name="press_to_turn_on_off">Kliknij by włączyć/wyłączyć</string>
+</resources>

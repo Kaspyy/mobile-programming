@@ -1,5 +1,6 @@
 package com.example.studentlist
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -17,6 +18,56 @@ class MyDatabaseHelper(private val context: Context?) : SQLiteOpenHelper(
     override fun onUpgrade(db: SQLiteDatabase, i: Int, i1: Int) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
+    }
+
+    fun addStudent(name: String) {
+        val db = this.writableDatabase
+        val cv = android.content.ContentValues()
+
+        cv.put(COLUMN_NAME, name)
+
+        val result = db.insert(TABLE_NAME, null, cv)
+        if (result == (-1).toLong()) {
+            android.widget.Toast.makeText(context, "Failed", android.widget.Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            android.widget.Toast.makeText(
+                context,
+                "Added successfully!",
+                android.widget.Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    @SuppressLint("Recycle")
+    fun readAllData(): android.database.Cursor {
+        val query = "SELECT * FROM $TABLE_NAME"
+        val db = this.readableDatabase
+        var cursor: android.database.Cursor? = null
+
+        if (db != null) {
+            cursor = db.rawQuery(query, null)
+        }
+        return cursor!!
+    }
+
+    fun updateData(id: String?, name: String?) {
+        val db = this.writableDatabase
+        val cv = android.content.ContentValues()
+
+        cv.put(COLUMN_NAME, name)
+
+        val result = db.update(TABLE_NAME, cv, "ID=?", arrayOf(id))
+        if (result == -1) {
+            android.widget.Toast.makeText(context, "Failed", android.widget.Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            android.widget.Toast.makeText(
+                context,
+                "Updated successfully!",
+                android.widget.Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     companion object {
