@@ -1,5 +1,6 @@
 package com.example.studentlist
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -19,8 +20,39 @@ class MyDatabaseHelper(private val context: Context?) : SQLiteOpenHelper(
         onCreate(db)
     }
 
+    fun addStudent(name: String) {
+        val db = this.writableDatabase
+        val cv = ContentValues()
+
+        cv.put(COLUMN_NAME, name)
+
+        val result = db.insert(TABLE_NAME, null, cv)
+        if (result == (-1).toLong()) {
+            android.widget.Toast.makeText(context, "Failed", android.widget.Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            android.widget.Toast.makeText(
+                context,
+                "Added successfully!",
+                android.widget.Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    fun readData(): android.database.Cursor? {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM " + TABLE_NAME
+        return db.rawQuery(query, null)
+    }
+
+    fun deleteOneRow(name: String) {
+        val db = this.writableDatabase
+        val query = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + name + "'"
+        db.execSQL(query)
+    }
+
     companion object {
-        private const val DATABASE_NAME = "Student.db"
+        private const val DATABASE_NAME = "Student1.db"
         private const val DATABASE_VERSION = 1
         private const val TABLE_NAME = "my_students"
         private const val COLUMN_ID = "_id"
