@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+
 class CustomAdapter(val activity: Activity, val studentList: ArrayList<String>) :
     RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
 

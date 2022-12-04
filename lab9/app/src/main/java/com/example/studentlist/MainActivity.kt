@@ -9,7 +9,6 @@ class MainActivity : AppCompatActivity() {
     private val myDB = MyDatabaseHelper(this)
     val studentList = ArrayList<String>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
             val intent = android.content.Intent(this, AddActivity::class.java)
             startActivity(intent)
         }
-
 
         val customAdapter = CustomAdapter(MainActivity(), studentList)
         recyclerView.adapter = customAdapter

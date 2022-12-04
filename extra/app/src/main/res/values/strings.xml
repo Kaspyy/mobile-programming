@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LightSwitch</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home_screen">Flashlight</string>
+    <string name="next">Next</string>
+    <string name="press_to_turn_on_off">Press to turn on/off</string>
+</resources>
