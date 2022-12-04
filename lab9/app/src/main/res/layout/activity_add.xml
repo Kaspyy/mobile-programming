@@ -10,7 +10,7 @@
         android:id="@+id/editStudentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         android:ems="10"
         android:hint="Student name"
         android:inputType="textPersonName"
@@ -27,7 +27,6 @@
         android:layout_marginTop="40dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editStudentName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

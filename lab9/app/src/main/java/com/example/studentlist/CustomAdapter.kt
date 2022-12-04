@@ -1,25 +1,20 @@
 package com.example.studentlist
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomAdapter : RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
-    private var studentList: ArrayList<String> = ArrayList()
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val studentName: TextView = itemView.findViewById(R.id.studentName)
-        val mainLayout: View = itemView.findViewById(R.id.mainLayout)
-    }
+class CustomAdapter(val activity: Activity, val studentList: ArrayList<String>) :
+    RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.student_item,
-            parent,
-            false
-        )
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.student_item, parent, false)
         return MyViewHolder(itemView)
     }
 
@@ -27,11 +22,10 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
         val currentItem = studentList[position]
         holder.studentName.text = currentItem
         holder.mainLayout.setOnClickListener {
-            val intent =
-                android.content.Intent(holder.mainLayout.context, UpdateActivity::class.java)
-            intent.putExtra("id", position)
-            intent.putExtra("name", currentItem)
-            holder.mainLayout.context.startActivity(intent)
+            val intent = Intent(holder.itemView.context, EditActivity::class.java)
+            intent.putExtra("studentName", currentItem)
+            holder.itemView.context.startActivity(intent)
+            activity.startActivityForResult(intent, 1)
         }
     }
 
@@ -39,8 +33,8 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
         return studentList.size
     }
 
-    fun setData(student: ArrayList<String>) {
-        this.studentList = student
-        notifyDataSetChanged()
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val studentName: TextView = itemView.findViewById(R.id.studentName)
+        val mainLayout: View = itemView.findViewById(R.id.mainLayout)
     }
 }
